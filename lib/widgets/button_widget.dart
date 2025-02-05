@@ -1,34 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:gambolspark/constants/app_theme.dart';
 import 'package:gambolspark/constants/color_constants.dart';
+import 'package:get/get.dart';
 
 import '../constants/size_constants.dart';
 
-// Widget iconButton(
-//     {required Function() onTap,
-//     bool isCircle = false,
-//     Color? color,
-//     Color? iconColor,
-//     double? width,
-//     double? height,
-//     double? iconSize,
-//     required IconData icon}) {
-//   return ElevatedButton(
-//     onPressed: onTap,
-//     child: Icon(icon, color: iconColor ?? blackColor, size: iconSize ?? fs25),
-//     style: ElevatedButton.styleFrom(
-//         primary: color ?? primaryColor,
-//         minimumSize:
-//             isCircle ? Size(width ?? s50, width ?? s50) : Size(width ?? 30.w, height ?? 30.w),
-//         shape: isCircle
-//             ? const CircleBorder()
-//             : RoundedRectangleBorder(borderRadius: BorderRadius.circular(s5))),
-//   );
-// }
-
 Widget elevatedButton(String title,
     {required Function() onTap, double? width, Color? color}) {
+  return ElevatedButton(
+    onPressed: onTap,
+    child: Text(title, style: AppTheme.tsRegular.copyWith(color: whiteColor)),
+    style: ElevatedButton.styleFrom(
+        primary: color ?? primaryColor,
+        minimumSize: Size(width ?? getWidth, s40)),
+  );
+}
+
+Widget cancelButton(String title,
+    {Function()? onTap, double? width, Color? color}) {
   return ElevatedButton(
     onPressed: onTap,
     child: Text(title, style: AppTheme.tsRegular.copyWith(color: whiteColor)),

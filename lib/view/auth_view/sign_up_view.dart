@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:get/get.dart';
 import 'package:gambolspark/constants/app_theme.dart';
 import 'package:gambolspark/constants/assets_url.dart';
+import 'package:gambolspark/constants/color_constants.dart';
 import 'package:gambolspark/constants/controller_constants.dart';
 import 'package:gambolspark/constants/size_constants.dart';
 import 'package:gambolspark/widgets/button_widget.dart';
-import 'package:gambolspark/widgets/dialog_widget.dart';
 import 'package:gambolspark/widgets/text_field_widget.dart';
+import 'package:get/get.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -29,6 +29,9 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
             child: SizedBox(
@@ -109,16 +112,11 @@ class _SignUpViewState extends State<SignUpView> {
                             )),
                         vSpace10,
                         elevatedButton("Sign Up", onTap: () {
-                          if (isAgree) {
-                            regCtrl.formKey.currentState?.save();
-                            if (regCtrl.formKey.currentState!.validate()) {
-                              // regCtrl.signUp();
-                            } else {
-                              print("validation failed");
-                            }
+                          regCtrl.formKey.currentState?.save();
+                          if (regCtrl.formKey.currentState!.validate()) {
+                            regCtrl.signUp();
                           } else {
-                            showErrorToast(
-                                message: "Please check the Privacy Policy");
+                            print("validation failed");
                           }
                         }),
                       ],

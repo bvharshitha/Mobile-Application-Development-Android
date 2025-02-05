@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/gambolspark/BuildConfig.java
+ com.example.gambolspark.BuildConfig

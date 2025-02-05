@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:gambolspark/constants/app_theme.dart';
 import 'package:gambolspark/constants/assets_url.dart';
+import 'package:gambolspark/constants/color_constants.dart';
+import 'package:gambolspark/constants/size_constants.dart';
 import 'package:gambolspark/routes/app_pages.dart';
 import 'package:gambolspark/services/shared_pref.dart';
+import 'package:get/get.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -34,10 +37,23 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  backgroundColor: primaryColor,
       body: Center(
-        child: Image.asset(logoImg, width: 350.w),
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(width: 350.w, height: 350.w, child: Image.asset(logoImg)),
+          vSpace20,
+          Text(
+            "Gambol Spark",
+            style: TextStyle(
+              color: primaryColor,
+              fontFamily: proxima,
+              fontSize: fs30,
+              fontWeight: FontWeight.bold,
+            ),
+          )
+        ],
+      )),
     );
   }
 
@@ -46,9 +62,9 @@ class _SplashViewState extends State<SplashView> {
   }
 
   onDoneLoadind() async {
-    /*  isFirstTimeOpen
+    isFirstTimeOpen
         ? Get.offAllNamed(Routes.landing)
-        : Get.offAllNamed(Routes.onboardingView);*/
+        : Get.offAllNamed(Routes.onboardingView);
     Get.offAllNamed(Routes.onboardingView);
   }
 }

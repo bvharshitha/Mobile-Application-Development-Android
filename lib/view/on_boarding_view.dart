@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gambolspark/routes/app_pages.dart';
-import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:gambolspark/constants/app_theme.dart';
 import 'package:gambolspark/constants/color_constants.dart';
 import 'package:gambolspark/constants/size_constants.dart';
 import 'package:gambolspark/controller/on_boarding_ctrl.dart';
+import 'package:gambolspark/routes/app_pages.dart';
 import 'package:gambolspark/services/shared_pref.dart';
 import 'package:gambolspark/widgets/button_widget.dart';
+import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -94,9 +94,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     )),
                 vSpace10,
                 elevatedButton("Get Started",
-                     onTap: () => Get.offAllNamed(Routes.loginView)
-                  
-              )
+                    onTap: () => Get.offAllNamed(Routes.landing))
               ]);
         },
       ),

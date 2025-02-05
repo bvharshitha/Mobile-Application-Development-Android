@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lottie/lottie.dart';
-
-import 'package:get/get.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gambolspark/constants/app_theme.dart';
 import 'package:gambolspark/constants/assets_url.dart';
 import 'package:gambolspark/constants/color_constants.dart';
+import 'package:gambolspark/constants/controller_constants.dart';
 import 'package:gambolspark/constants/size_constants.dart';
+import 'package:gambolspark/routes/app_pages.dart';
+import 'package:gambolspark/view/Manufacturing_view.dart';
+import 'package:gambolspark/view/Manufacturing_view.dart';
+import 'package:gambolspark/view/Manufacturing_view.dart';
+import 'package:gambolspark/view/sportzonelist.dart';
 import 'package:gambolspark/widgets/button_widget.dart';
+import 'package:gambolspark/widgets/text_field_widget.dart';
+import 'package:lottie/lottie.dart';
+
+import 'package:get/get.dart';
 
 final TextStyle titleStyle = TextStyle(fontSize: fs18);
 final TextStyle messageStyle = AppTheme.tsRegular;
@@ -312,53 +320,244 @@ class WillScopeDialog extends StatelessWidget {
   }
 }
 
-/*Widget shimmerLoading() {
-  return Shimmer.fromColors(
-    baseColor: baseColor,
-    highlightColor: highlightColor,
-    child: SizedBox(
-      width: getWidth,
-      child: Padding(
-        padding: pAll20,
-        child: ListView(
-          children: [
-            vSpace20,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 100.w,
-                  height: 35.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(s2),
-                      color: greyColor),
-                ),
-                Container(
-                  width: 150.w,
-                  height: 35.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(s2),
-                      color: greyColor),
-                ),
-              ],
+Future displayTextInputDialog(
+    BuildContext context, String title, List<String> menuListValue) async {
+  List<String> menuList = menuListValue;
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text(title),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return DropdownButtonFormField<String>(
+                  hint: Text("--Select--", style: AppTheme.tsLight),
+                  items: menuList
+                      .map((e) => DropdownMenuItem(
+                            child: Text(e),
+                            value: e,
+                          ))
+                      .toList(),
+                  onChanged: (val) {
+                    homeCtrl.menuTypeSelected.value = val.toString();
+                  },
+                  value: "Select",
+                );
+              },
             ),
-            vSpace20,
-            Container(
-              width: getWidth,
-              height: 350.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(s2), color: greyColor),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Confirm"),
+                onPressed: () {
+                  if (homeCtrl.menuTypeSelected.value == "Select") {
+                    showToast(message: "Select options properly");
+                  }
+                  if (homeCtrl.menuTypeSelected.value == "Indoor") {
+                    homeCtrl.menuTypeSelected.value = "Select";
+                    Get.off(() => SportZoneList(
+                        sportzonelist: homeCtrl.indoorList,
+                        title: "Indoor Game List"));
+                  }
+                  if (homeCtrl.menuTypeSelected.value == "Outdoor") {
+                    homeCtrl.menuTypeSelected.value = "Select";
+                    Get.off(() => SportZoneList(
+                        sportzonelist: homeCtrl.outdoorList,
+                        title: "Outdoor Game List"));
+                  }
+                  if (homeCtrl.menuTypeSelected.value == "Buy Now") {
+                    homeCtrl.menuTypeSelected.value = "Select";
+                    Get.offNamed(Routes.productView);
+                  }
+                  if (homeCtrl.menuTypeSelected.value == "Manufacturing") {
+                    homeCtrl.menuTypeSelected.value = "Select";
+                    Get.off(() => ManufacturingView());
+                  }
+                },
+              ),
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ]);
+      });
+}
+
+Future cancelDialog(
+  BuildContext context,
+  String title,
+  List<String> menuListValue,
+  String orderId,
+) async {
+  List<String> menuList = menuListValue;
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text(title),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Expanded(
+                  child: DropdownButtonFormField<String>(
+                    hint: Text("--Select--", style: AppTheme.tsLight),
+                    items: menuList
+                        .map((e) => DropdownMenuItem(
+                              child: Text(e),
+                              value: e,
+                            ))
+                        .toList(),
+                    onChanged: (val) {
+                      orderCtrl.cancelTypeSelected.value = val.toString();
+                    },
+                    value: '--Select Option--',
+                  ),
+                );
+              },
             ),
-            vSpace10,
-            Container(
-              width: getWidth,
-              height: 10.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(s2), color: greyColor),
-            ),
-          ],
-        ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Confirm'),
+                onPressed: () {
+                  Get.back();
+                  database.cancelOrder(
+                      orderCtrl.cancelTypeSelected.value, orderId);
+                },
+              ),
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ]);
+      });
+}
+
+Widget dropDownWidget(
+    {List<DropdownMenuItem<dynamic>>? items,
+    Function(dynamic)? onChanged,
+    dynamic value}) {
+  return Container(
+    padding: EdgeInsets.only(left: spaceV10),
+    decoration: BoxDecoration(
+        color: bgColor, borderRadius: BorderRadius.circular(spaceV2)),
+    child: DropdownButtonHideUnderline(
+      child: DropdownButton(
+        value: value,
+        onChanged: onChanged,
+        isExpanded: true,
+        items: items,
       ),
     ),
   );
-}*/
+}
+
+Future codDialog(
+  BuildContext context,
+  dynamic code,
+) async {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Center(child: Text("Enter code for confirm the order")),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Wrap(
+                  children: [
+                    vSpace20,
+                    Center(
+                      child: Text(code,
+                          style: AppTheme.tsBold,
+                          overflow: TextOverflow.ellipsis),
+                    ),
+                    vSpace20,
+                    TextFormFieldWidget(
+                      name: "Code",
+                      hintText: "Enter Code",
+                      labelText: "Enter Code",
+                      prefixIcon: Icons.dock_outlined,
+                      controller: regCtrl.codeCtrl,
+                      validator: FormBuilderValidators.required(),
+                    ),
+                  ],
+                );
+              },
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Confirm'),
+                onPressed: () {
+                  if (regCtrl.codeCtrl.text != "") {
+                    if (regCtrl.codeCtrl.text == code) {
+                      orderCtrl.createOrder("");
+                      Get.back();
+                    } else {
+                      showToast(message: "Enter Code Properly");
+                    }
+                  } else {
+                    showToast(message: "Enter Code Properly");
+                  }
+                },
+              ),
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ]);
+      });
+}
+
+Future cancelDialog2(
+  BuildContext context,
+  String msgStatus,
+  String orderId,
+) async {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text('Reason for Cancellation'),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return dropDownWidget(
+                    onChanged: (val) {
+                      setState(() {
+                        orderCtrl.cancelTypeSelected.value = val.toString();
+                      });
+                    },
+                    value: orderCtrl.cancelTypeSelected.value,
+                    items: orderCtrl.cancelList
+                        .map((e) => DropdownMenuItem(
+                              child: Text(e),
+                              value: e,
+                            ))
+                        .toList());
+              },
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Confirm'),
+                onPressed: () {
+                  if (orderCtrl.cancelTypeSelected.value !=
+                      '--Select Option--') {
+                    database.cancelOrder(
+                        orderCtrl.cancelTypeSelected.value, orderId);
+                    Get.back();
+                  } else {
+                    showToast(message: "select properly");
+                  }
+                },
+              ),
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ]);
+      });
+}

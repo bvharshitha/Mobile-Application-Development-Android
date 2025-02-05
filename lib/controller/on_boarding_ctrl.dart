@@ -1,26 +1,21 @@
-import 'package:get/get.dart';
 import 'package:gambolspark/constants/assets_url.dart';
 import 'package:gambolspark/model/on_boarding_model.dart';
+import 'package:get/get.dart';
 
 class OnBoardingController extends GetxController {
   RxInt selectedPageIndex = 0.obs;
 
-  // setPageIndex(int index) {
-  //   selectedPageIndex = index;
-  //   update();
-  // }
-
   List<OnBoardingModel> onBoadingList = [
     OnBoardingModel(
-      title: "Sports zone",
+      title: "Sports Zone",
       subtitle:
           "The main aim is to provide all aspects of sports under one roof",
       imageURL: obImg1,
     ),
     OnBoardingModel(
-      title: "Sport Locations",
+      title: "Play Area",
       subtitle:
-          "The users can find the accurate locations of sports venues within particular radius",
+          "Users can find the accurate locations of sports venues within particular radius",
       imageURL: obImg2,
     ),
     OnBoardingModel(
@@ -31,11 +26,7 @@ class OnBoardingController extends GetxController {
     OnBoardingModel(
         title: "E-Commerce",
         subtitle:
-            "This provides buying of the sports accessories in online and payment gateway is provided",
+            "This provides buying of accessories in online and payment option is integrated",
         imageURL: obImg4),
-    /*   OnBoardingModel(
-        title: "Yoga",
-        subtitle: "It is good for health and mind",
-        imageURL: obImg4),*/
   ];
 }

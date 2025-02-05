@@ -22,9 +22,12 @@ final s80 = 80.w;
 final spaceV2 = 2.h;
 final spaceV5 = 5.h;
 final spaceV8 = 8.h;
+final spaceV12 = 12.h;
 final spaceV10 = 10.h;
 final spaceV20 = 20.h;
 final spaceV40 = 40.h;
+final spaceV15 = 15.h;
+final spaceV80 = 80.h;
 
 //*Button Size
 final width88 = 88.w;
@@ -59,6 +62,7 @@ final double fs16 = 16.sp;
 final double fs18 = 18.sp;
 final double fs20 = 20.sp;
 final double fs25 = 25.sp;
+final double fs22 = 22.sp;
 final double fs30 = 30.sp;
 
 //* SPACE AND SIZE
@@ -67,14 +71,18 @@ final SizedBox hSpace5 = SizedBox(width: s5);
 final SizedBox hSpace8 = SizedBox(width: s8);
 final SizedBox hSpace10 = SizedBox(width: s10);
 final SizedBox hSpace20 = SizedBox(width: s20);
+final SizedBox hSpace30 = SizedBox(width: s30);
+final SizedBox hSpace50 = SizedBox(width: s50);
 
 final SizedBox vSpace2 = SizedBox(height: spaceV2);
 final SizedBox vSpace5 = SizedBox(height: spaceV5);
 final SizedBox vSpace8 = SizedBox(height: spaceV8);
 final SizedBox vSpace10 = SizedBox(height: spaceV10);
-final SizedBox vSpace15 = SizedBox(height: spaceV10);
+final SizedBox vSpace12 = SizedBox(height: spaceV12);
+final SizedBox vSpace15 = SizedBox(height: spaceV15);
 final SizedBox vSpace20 = SizedBox(height: spaceV20);
 final SizedBox vSpace40 = SizedBox(height: spaceV40);
+final SizedBox vSpace80 = SizedBox(height: spaceV80);
 
 //* GET HEIGHT AND WIDTH
 final getHeight = Get.height;
