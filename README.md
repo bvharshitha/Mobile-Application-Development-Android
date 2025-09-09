@@ -1,16 +1,24 @@
-# gambolspark
+# GAMBOL SPARK  
 
-A new Flutter project.
+**GAMBOL SPARK** is an Android application designed to make sports more accessible and organized. The app provides users with two main sectors:  
 
-## Getting Started
+## 📌 Features  
 
-This project is a starting point for a Flutter application.
+### 1. Sports Zone  
+- **Indoor Sports** – Users can explore and book slots for various indoor sports.  
+- **Outdoor Sports** – Users can conveniently book grounds and courts online, making the entire process hassle-free.  
 
-A few resources to get you started if this is your first Flutter project:
+### 2. Sports Accessories  
+- **Buy Now** – Customers can directly purchase sports-related accessories.  
+- **Manufacturing** – Provides a platform to explore custom sports equipment and accessories.  
+- **Order Management** – Customers can place, track, and even cancel orders with ease.  
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 🎯 Why GAMBOL SPARK?  
+- Seamless online **ground booking system**  
+- A **sports-focused e-commerce experience**  
+- Convenient **cancellation and order management** features  
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📷 App Preview  
+👉 [Click here to view how the app looks](https://drive.google.com/file/d/1t8bdanwrYdwBJ0Vo2byvL5g-t_cY5lBp/view?usp=sharing)  
+
+---
